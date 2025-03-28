@@ -9,8 +9,8 @@
 - This program is Open Source
 - This program is absolutely Free
 - This program developed by Python
-- This program run just in Windows!
-- This program must be run as administrator!
+- This program run just **in Windows**!
+- This program must be **run as administrator**!
 - This program does not need any external packages
 
 ---
