@@ -16,6 +16,8 @@ interface_name: str = "Wi-Fi"
 
 def check_user_is_admin() -> bool:
     """
+    Check User Is Admin Function
+
     Checks if the current user is an administrator.
 
     :return: True if the user is an administrator, False otherwise.
@@ -25,6 +27,7 @@ def check_user_is_admin() -> bool:
 
     try:
         is_user_admin = os.getuid() == 0
+
     except AttributeError:
         is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
 
@@ -32,6 +35,10 @@ def check_user_is_admin() -> bool:
 
 
 def load_data() -> None:
+    """
+    Load Data Function
+    """
+
     global data
 
     with open(file="data.json", mode="rt", encoding="utf-8") as file:
@@ -40,7 +47,7 @@ def load_data() -> None:
 
 def display_menu() -> None:
     """
-    Display Menu
+    Display Menu Function
     """
 
     print("Welcome to DT Anti Sanction - Version 1.0")
@@ -71,6 +78,8 @@ def display_menu() -> None:
 
 def display_current_dns(interface_name: str) -> None:
     """
+    Display Current DNS Function
+
     Display the current DNS servers for a specified network interface.
 
     :param interface_name: Name of the network interface
@@ -94,6 +103,8 @@ def display_current_dns(interface_name: str) -> None:
 
 def reset_dns(interface_name: str) -> None:
     """
+    Reset DNS Function
+
     Resets the DNS settings to obtain DNS servers automatically.
 
     :param interface_name: Name of the network interface
@@ -112,7 +123,7 @@ def reset_dns(interface_name: str) -> None:
 
 def flush_dns() -> None:
     """
-    Flush DNS
+    Flush DNS Function
     """
 
     try:
@@ -129,6 +140,8 @@ def change_dns(
     interface_name: str, primary_dns: str, secondary_dns: str = None
 ) -> None:
     """
+    Change DNS Function
+
     Changes the DNS servers for a specified network interface.
 
     :param interface_name: Name of the network interface
@@ -159,12 +172,16 @@ def change_dns(
 
 def display_interfaces() -> None:
     """
-    Display network interfaces
+    Display Interfaces Function
     """
     # netsh interface show interface
 
 
-def main():
+def main() -> None:
+    """
+    Main Function
+    """
+
     os.system(command="cls")
 
     load_data()
@@ -202,10 +219,11 @@ def main():
             print(f"{dns_name} - primary: {primary_dns} - Secondary: {secondary_dns}")
 
             change_dns(
-                interface_name=interface_name,
                 primary_dns=primary_dns,
                 secondary_dns=secondary_dns,
+                interface_name=interface_name,
             )
+
             display_current_dns(interface_name=interface_name)
 
     except KeyboardInterrupt:
