@@ -22,13 +22,6 @@
     },
     {
         "need_space": false,
-        "dns_name": "✔️  Shecan",
-        "primary_dns": "178.22.122.100",
-        "secondary_dns": "185.51.200.2",
-        "url": "https://shecan.ir"
-    },
-    {
-        "need_space": false,
         "dns_name": "✔️  Electro",
         "primary_dns": "78.157.42.100",
         "secondary_dns": "78.157.42.101",
@@ -61,6 +54,20 @@
         "primary_dns": "10.202.10.10",
         "secondary_dns": "10.202.10.11",
         "url": "https://radar.game"
+    },
+    {
+        "need_space": true,
+        "dns_name": "✔️  Shecan",
+        "primary_dns": "178.22.122.100",
+        "secondary_dns": "185.51.200.2",
+        "url": "https://shecan.ir"
+    },
+    {
+        "need_space": false,
+        "dns_name": "✔️  Shecan Pro",
+        "primary_dns": "178.22.122.101",
+        "secondary_dns": "185.51.200.1",
+        "url": "https://shecan.ir"
     },
     {
         "need_space": true,

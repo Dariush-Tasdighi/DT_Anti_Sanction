@@ -50,7 +50,7 @@ def display_menu() -> None:
     Display Menu Function
     """
 
-    print("Welcome to DT Anti Sanction - Version 1.0")
+    print("Welcome to DT Anti Sanction - Version 1.2")
     # print(f"{Fore.BLUE}Welcome to DT Anti Sanction - Version 1.0{Fore.RESET}")
 
     if check_user_is_admin() == False:
