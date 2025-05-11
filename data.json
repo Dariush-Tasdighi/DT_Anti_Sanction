@@ -1,13 +1,6 @@
 [
     {
         "need_space": false,
-        "dns_name": "✔️  403",
-        "primary_dns": "10.202.10.202",
-        "secondary_dns": "10.202.10.102",
-        "url": "https://403.online"
-    },
-    {
-        "need_space": false,
         "dns_name": "✔️  Begzar",
         "primary_dns": "185.55.226.26",
         "secondary_dns": "185.55.225.25",
@@ -16,8 +9,8 @@
     {
         "need_space": false,
         "dns_name": "✔️  Server",
-        "primary_dns": "5.75.195.221",
-        "secondary_dns": "5.75.207.85",
+        "primary_dns": "65.109.209.224",
+        "secondary_dns": "65.109.177.224",
         "url": "https://server.ir/dns-proxy"
     },
     {
@@ -39,7 +32,7 @@
         "dns_name": "✔️  Host Iran",
         "primary_dns": "172.29.0.100",
         "secondary_dns": "172.29.2.100",
-        "url": "https://hostiran.net"
+        "url": "https://hostiran.net/landing/proxy"
     },
     {
         "need_space": false,

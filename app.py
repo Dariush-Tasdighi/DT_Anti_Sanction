@@ -9,6 +9,8 @@ import subprocess
 
 # from colorama import Fore
 
+VERSION: str = "1.3"
+
 data: list = []
 interface_name: str = "Wi-Fi"
 # interface_name: str = "Ethernet"
@@ -16,7 +18,7 @@ interface_name: str = "Wi-Fi"
 
 def check_user_is_admin() -> bool:
     """
-    Check User Is Admin Function
+    Check user is admin function.
 
     Checks if the current user is an administrator.
 
@@ -36,7 +38,7 @@ def check_user_is_admin() -> bool:
 
 def load_data() -> None:
     """
-    Load Data Function
+    Load data function.
     """
 
     global data
@@ -47,11 +49,11 @@ def load_data() -> None:
 
 def display_menu() -> None:
     """
-    Display Menu Function
+    Display menu function.
     """
 
-    print("Welcome to DT Anti Sanction - Version 1.2")
-    # print(f"{Fore.BLUE}Welcome to DT Anti Sanction - Version 1.0{Fore.RESET}")
+    print(f"Welcome to DT Anti Sanction - Version {VERSION}")
+    # print(f"{Fore.BLUE}Welcome to DT Anti Sanction - Version {VERSION}{Fore.RESET}")
 
     if check_user_is_admin() == False:
         print("You must run this program as an administrator!")
@@ -78,7 +80,7 @@ def display_menu() -> None:
 
 def display_current_dns(interface_name: str) -> None:
     """
-    Display Current DNS Function
+    Display current DNS function.
 
     Display the current DNS servers for a specified network interface.
 
@@ -96,14 +98,14 @@ def display_current_dns(interface_name: str) -> None:
 
         print(result.stdout)
 
-    except Exception as ex:
-        print(f"Error: {ex}")
-        # print(f"{Fore.RED}Error: {ex}{Fore.RESET}")
+    except Exception as error:
+        print(f"Error: {error}")
+        # print(f"{Fore.RED}Error: {error}{Fore.RESET}")
 
 
 def reset_dns(interface_name: str) -> None:
     """
-    Reset DNS Function
+    Reset DNS function.
 
     Resets the DNS settings to obtain DNS servers automatically.
 
@@ -116,14 +118,14 @@ def reset_dns(interface_name: str) -> None:
         print(f"DNS settings for {interface_name} reset to automatic.")
         flush_dns()
 
-    except Exception as ex:
-        print(f"Error: {ex}")
-        # print(f"{Fore.RED}Error: {ex}{Fore.RESET}")
+    except Exception as error:
+        print(f"Error: {error}")
+        # print(f"{Fore.RED}Error: {error}{Fore.RESET}")
 
 
 def flush_dns() -> None:
     """
-    Flush DNS Function
+    Flush DNS function.
     """
 
     try:
@@ -131,16 +133,18 @@ def flush_dns() -> None:
         os.system(command=command)
         print("DNS Flushed.")
 
-    except Exception as ex:
-        print(f"Error: {ex}")
-        # print(f"{Fore.RED}Error: {ex}{Fore.RESET}")
+    except Exception as error:
+        print(f"Error: {error}")
+        # print(f"{Fore.RED}Error: {error}{Fore.RESET}")
 
 
 def change_dns(
-    interface_name: str, primary_dns: str, secondary_dns: str = None
+    interface_name: str,
+    primary_dns: str,
+    secondary_dns: str = None,
 ) -> None:
     """
-    Change DNS Function
+    Change DNS function.
 
     Changes the DNS servers for a specified network interface.
 
@@ -165,21 +169,22 @@ def change_dns(
 
         flush_dns()
 
-    except Exception as ex:
-        print(f"Error: {ex}")
-        # print(f"{Fore.RED}Error: {ex}{Fore.RESET}")
+    except Exception as error:
+        print(f"Error: {error}")
+        # print(f"{Fore.RED}Error: {error}{Fore.RESET}")
 
 
 def display_interfaces() -> None:
     """
-    Display Interfaces Function
+    Display interfaces function.
     """
+
     # netsh interface show interface
 
 
 def main() -> None:
     """
-    Main Function
+    Main function.
     """
 
     os.system(command="cls")

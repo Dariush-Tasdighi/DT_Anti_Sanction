@@ -4,7 +4,7 @@
 
 ---
 
-### Version 1.2
+### Version 1.3
 
 - This program is Open Source
 - This program is absolutely Free
