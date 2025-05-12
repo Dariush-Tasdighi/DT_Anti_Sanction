@@ -1,77 +1,75 @@
 [
     {
         "need_space": false,
-        "dns_name": "✔️  Begzar",
-        "primary_dns": "185.55.226.26",
-        "secondary_dns": "185.55.225.25",
-        "url": "https://begzar.ir"
+        "dns_name": "\u2714\ufe0f  Begzar",
+        "primary_dns": "185.55.226.26"
     },
     {
         "need_space": false,
-        "dns_name": "✔️  Server",
+        "dns_name": "\u2714\ufe0f  Server",
         "primary_dns": "65.109.209.224",
         "secondary_dns": "65.109.177.244",
         "url": "https://server.ir/dns-proxy"
     },
     {
         "need_space": false,
-        "dns_name": "✔️  Electro",
+        "dns_name": "\u2714\ufe0f  Electro",
         "primary_dns": "78.157.42.100",
         "secondary_dns": "78.157.42.101",
         "url": "https://electrotm.org"
     },
     {
         "need_space": false,
-        "dns_name": "✔️  Shelter",
+        "dns_name": "\u2714\ufe0f  Shelter",
         "primary_dns": "94.103.125.157",
         "secondary_dns": "94.103.125.158",
         "url": "https://www.sheltertm.com"
     },
     {
         "need_space": false,
-        "dns_name": "✔️  Host Iran",
+        "dns_name": "\u2714\ufe0f  Host Iran",
         "primary_dns": "172.29.0.100",
         "secondary_dns": "172.29.2.100",
         "url": "https://hostiran.net/landing/proxy"
     },
     {
         "need_space": false,
-        "dns_name": "✔️  Pishgaman",
+        "dns_name": "\u2714\ufe0f  Pishgaman",
         "primary_dns": "5.202.100.100",
         "secondary_dns": "5.202.100.101",
         "url": "https://pishgaman.net"
     },
     {
         "need_space": false,
-        "dns_name": "✔️  Radar Game",
+        "dns_name": "\u2714\ufe0f  Radar Game",
         "primary_dns": "10.202.10.10",
         "secondary_dns": "10.202.10.11",
         "url": "https://radar.game"
     },
     {
         "need_space": true,
-        "dns_name": "✔️  Shecan",
+        "dns_name": "\u2714\ufe0f  Shecan",
         "primary_dns": "178.22.122.100",
         "secondary_dns": "185.51.200.2",
         "url": "https://shecan.ir"
     },
     {
         "need_space": false,
-        "dns_name": "✔️  Shecan Pro",
+        "dns_name": "\u2714\ufe0f  Shecan Pro",
         "primary_dns": "178.22.122.101",
         "secondary_dns": "185.51.200.1",
         "url": "https://shecan.ir"
     },
     {
         "need_space": true,
-        "dns_name": "✔️  Level 3",
+        "dns_name": "\u2714\ufe0f  Level 3",
         "primary_dns": "209.244.0.3",
         "secondary_dns": "209.244.0.4",
         "url": "https://www.publicdns.xyz/public/level3.html"
     },
     {
         "need_space": false,
-        "dns_name": "✔️  Cloudflare",
+        "dns_name": "\u2714\ufe0f  Cloudflare",
         "primary_dns": "1.1.1.1",
         "secondary_dns": "1.0.0.1",
         "url": "https://www.cloudflare.com"
