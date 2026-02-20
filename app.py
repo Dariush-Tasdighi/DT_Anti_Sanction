@@ -6,14 +6,13 @@ import os
 import json
 import ctypes
 import subprocess
+from typing import (
+    Final,
+    Optional,
+)
 
-# from colorama import Fore
-
-VERSION: str = "1.3"
-
-data: list = []
-interface_name: str = "Wi-Fi"
-# interface_name: str = "Ethernet"
+VERSION: Final[str] = "1.4"
+INTERFACE_NAME: Final[str] = "Wi-Fi"  # "Ethernet"
 
 
 def check_user_is_admin() -> bool:
@@ -27,10 +26,14 @@ def check_user_is_admin() -> bool:
 
     is_user_admin: bool = False
 
-    try:
-        is_user_admin = os.getuid() == 0
+    # Check if the operating system is Unix-like
+    if os.name == "posix":
+        try:
+            is_user_admin = os.getuid() == 0
 
-    except AttributeError:
+        except AttributeError:
+            pass
+    else:
         is_user_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
 
     return is_user_admin
@@ -53,13 +56,10 @@ def display_menu() -> None:
     """
 
     print(f"Welcome to DT Anti Sanction - Version {VERSION}")
-    # print(f"{Fore.BLUE}Welcome to DT Anti Sanction - Version {VERSION}{Fore.RESET}")
 
     if check_user_is_admin() == False:
-        print("You must run this program as an administrator!")
-        # print(f"{Fore.YELLOW}You must run this program as an administrator!{Fore.RESET}")
-        print()
-        quit()
+        error_message: str = "You must run this program as an administrator"
+        raise Exception(error_message)
 
     print()
 
@@ -67,14 +67,13 @@ def display_menu() -> None:
         if data[index]["need_space"]:
             print()
 
-        if index < 9:
-            print(f"{index + 1}.  {data[index]["dns_name"]}")
-        else:
-            print(f"{index + 1}. {data[index]["dns_name"]}")
+        print(f"{(index + 1):>2}. {data[index]["dns_name"]}")
 
     print()
     print(f"{len(data) + 1}. Reset")
     print(f"{len(data) + 2}. Display Current DNS")
+    print()
+    print(f"{len(data) + 3}. Exit")
     print()
 
 
@@ -89,18 +88,23 @@ def display_current_dns(interface_name: str) -> None:
 
     try:
         command: str = f'netsh interface ip show dns name="{interface_name}"'
-        result = subprocess.run(command, capture_output=True, text=True, shell=True)
+
+        result = subprocess.run(
+            text=True,
+            check=True,
+            shell=True,
+            args=command,
+            capture_output=True,
+        )
 
         if result.returncode != 0:
-            print(f"Error: {result.stderr}")
-            # print(f"{Fore.RED}Error: {result.stderr}{Fore.RESET}")
+            print(f"[-] {result.stderr}!")
             return
 
-        print(result.stdout)
+        print(result.stdout.strip())
 
-    except Exception as error:
-        print(f"Error: {error}")
-        # print(f"{Fore.RED}Error: {error}{Fore.RESET}")
+    except Exception as exception:
+        print(f"[-] {exception}!")
 
 
 def reset_dns(interface_name: str) -> None:
@@ -114,13 +118,20 @@ def reset_dns(interface_name: str) -> None:
 
     try:
         command: str = f'netsh interface ip set dns name="{interface_name}" dhcp'
-        os.system(command=command)
+
+        subprocess.run(
+            text=True,
+            check=True,
+            shell=True,
+            args=command,
+            capture_output=False,
+        )
+
         print(f"DNS settings for {interface_name} reset to automatic.")
         flush_dns()
 
-    except Exception as error:
-        print(f"Error: {error}")
-        # print(f"{Fore.RED}Error: {error}{Fore.RESET}")
+    except Exception as exception:
+        print(f"[-] Error: {exception}!")
 
 
 def flush_dns() -> None:
@@ -130,18 +141,25 @@ def flush_dns() -> None:
 
     try:
         command: str = "ipconfig /flushdns"
-        os.system(command=command)
+
+        subprocess.run(
+            text=True,
+            check=True,
+            shell=True,
+            args=command,
+            capture_output=False,
+        )
+
         print("DNS Flushed.")
 
-    except Exception as error:
-        print(f"Error: {error}")
-        # print(f"{Fore.RED}Error: {error}{Fore.RESET}")
+    except Exception as exception:
+        print(f"[-] Error: {exception}!")
 
 
 def change_dns(
     interface_name: str,
     primary_dns: str,
-    secondary_dns: str = None,
+    secondary_dns: Optional[str] = None,
 ) -> None:
     """
     Change DNS function.
@@ -157,26 +175,41 @@ def change_dns(
         command: str = (
             f'netsh interface ip set dns name="{interface_name}" static {primary_dns}'
         )
-        os.system(command=command)
+
+        subprocess.run(
+            text=True,
+            check=True,
+            shell=True,
+            args=command,
+            capture_output=False,
+        )
+
         print(f"Primary DNS for {interface_name} set to {primary_dns}")
 
         if secondary_dns:
             command: str = (
                 f'netsh interface ip add dns name="{interface_name}" {secondary_dns} index=2'
             )
-            os.system(command=command)
+
+            subprocess.run(
+                text=True,
+                check=True,
+                shell=True,
+                args=command,
+                capture_output=False,
+            )
+
             print(f"Secondary DNS for {interface_name} set to {secondary_dns}")
 
         flush_dns()
 
-    except Exception as error:
-        print(f"Error: {error}")
-        # print(f"{Fore.RED}Error: {error}{Fore.RESET}")
+    except Exception as exception:
+        print(f"[-] Error: {exception}!")
 
 
 def display_interfaces() -> None:
     """
-    Display interfaces function.
+    Display interfaces.
     """
 
     # netsh interface show interface
@@ -184,56 +217,70 @@ def display_interfaces() -> None:
 
 def main() -> None:
     """
-    Main function.
+    The main of program
     """
 
-    os.system(command="cls")
+    if os.name == "nt":
+        subprocess.run(args=["cls"], shell=True)
+    else:
+        subprocess.run(args=["clear"], shell=True)
 
     load_data()
     display_menu()
 
-    try:
-        choice: str = input(f"Select an option [1..{len(data) + 2}]: ")
-        print()
+    prompt: str = f"Select an option [1..{len(data) + 2}]: "
+    choice: str = input(prompt)
+    print()
 
-        if not choice.isdigit():
-            print("Invalid input! Please enter just a number...")
-            print()
-            quit()
+    if not choice.isdigit():
+        error_message: str = "Invalid input! Please enter just a number"
+        raise ValueError(error_message)
 
-        choice: int = int(choice)
+    choice_int: int = int(choice)
+    max_choice: int = len(data) + 3
 
-        if choice < 1 or choice > len(data) + 2:
-            print(
-                f"Invalid input! Please enter a number between 1 and {len(data) + 2}..."
-            )
-            print()
-            quit()
+    if choice_int < 1 or choice_int > max_choice:
+        error_message: str = (
+            f"Invalid input! Please enter a number between 1 and {max_choice}"
+        )
+        raise ValueError(error_message)
 
-        if choice == len(data) + 1:
-            reset_dns(interface_name=interface_name)
-            display_current_dns(interface_name=interface_name)
+    if choice_int == len(data) + 1:
+        reset_dns(interface_name=INTERFACE_NAME)
+        display_current_dns(interface_name=INTERFACE_NAME)
 
-        elif choice == len(data) + 2:
-            display_current_dns(interface_name=interface_name)
+    elif choice_int == len(data) + 2:
+        display_current_dns(interface_name=INTERFACE_NAME)
 
-        else:
-            dns_name: str = data[choice - 1]["dns_name"]
-            primary_dns: str = data[choice - 1]["primary_dns"]
-            secondary_dns: str = data[choice - 1]["secondary_dns"]
-            print(f"{dns_name} - primary: {primary_dns} - Secondary: {secondary_dns}")
+    elif choice_int == len(data) + 3:
+        print("Goodbye!")
 
-            change_dns(
-                primary_dns=primary_dns,
-                secondary_dns=secondary_dns,
-                interface_name=interface_name,
-            )
+    else:
+        dns_name: str = data[choice_int - 1]["dns_name"]
+        primary_dns: str = data[choice_int - 1]["primary_dns"]
+        secondary_dns: str = data[choice_int - 1]["secondary_dns"]
+        print(f"{dns_name} - primary: {primary_dns} - Secondary: {secondary_dns}")
 
-            display_current_dns(interface_name=interface_name)
+        change_dns(
+            primary_dns=primary_dns,
+            secondary_dns=secondary_dns,
+            interface_name=INTERFACE_NAME,
+        )
 
-    except KeyboardInterrupt:
-        pass
+        display_current_dns(interface_name=INTERFACE_NAME)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        data: list = []
+
+        main()
+
+    except KeyboardInterrupt:
+        print()
+
+    except Exception as exception:
+        print(f"[-] {exception}!")
+
+    finally:
+        print()

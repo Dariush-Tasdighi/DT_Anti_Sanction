@@ -1,10 +1,19 @@
 # DT Anti Sanction
 
-[<img src="./DT_Anti_Sanction.webp" width="200"/>](DT_Anti_Sanction.webp)
+![DT Anti Sanction](./DT_Anti_Sanction.webp "DT Anti Sanction")
 
----
+## This program was developed by
 
-### Version 1.3
+- **Dariush Tasdighi**
+  - Cell Phone Number: (+98)-9121087461
+  - Email Address: <DariushT@GMail.com>
+  - Telegram ID: <https://t.me/Dariush_Tasdighi>
+  - LinkedIn: <https://www.linkedin.com/in/tasdighi>
+  - Telegram Channels
+    - <https://t.me/IranianExperts>
+    - <https://t.me/DT_PYTHON_LEARNING>
+
+## Version 1.4
 
 - This program is Open Source
 - This program is absolutely Free
@@ -15,18 +24,21 @@
 
 ---
 
-#### Instead of:
+### Instead of
 
--  WIN + R
-    - Type ncpa.cpl in address bar and press Enter!
-        - and ...
+- WIN + R
+  - Type ncpa.cpl in address bar and press Enter!
+    - and ...
 
-### Now!
+### Now
 
 - Download and Install the latest version of Python
-    - https://www.python.org
-    
+  - <https://www.python.org>
+
 - Open Windows Command Prompt / Windows PowerShell as administrator:
-    - python app.py
+
+```bash
+python .\app.py
+```
 
 ---
